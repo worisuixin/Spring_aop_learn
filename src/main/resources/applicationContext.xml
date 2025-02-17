@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--配置目标类-->
+    <bean id="userService" class="com.itbaima.service.impl.UserServiceImpl"></bean>
+<!--配置通知-->
+    <bean id="myAdvice" class="com.itbaima.advice.MyAdvice"></bean>
+<!--配置aop-->
+    <aop:config>
+<!--        配置切点表达式，目的是指定哪些方法被增强-->
+        <aop:pointcut id="myPointcut" expression="execution(void com.itbaima.service.impl.UserServiceImpl.show1())"/>
+<!--        配置织入，目的是要指定哪些切点与哪些通知要进行结合-->
+        <aop:aspect ref="myAdvice">  <!--指定通知类是谁-->
+            <aop:before method="beforeAdvice" pointcut-ref="myPointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+
+<!--    <bean class="com.itbaima.processor.MockAopBeanPostProcessor"></bean>-->
+<!--    上面这个mockAopBeanPostProcessor是自己模仿aop的运行配置的，当配置了aop之后，这个就得注释掉，否则就配置了两次-->
+</beans>
