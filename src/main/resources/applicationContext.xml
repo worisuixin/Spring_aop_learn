@@ -22,7 +22,11 @@
         <aop:pointcut id="myPointcut" expression="execution(void com.itbaima.service.impl.UserServiceImpl.show1())"/>
 <!--        配置织入，目的是要指定哪些切点与哪些通知要进行结合-->
         <aop:aspect ref="myAdvice">  <!--指定通知类是谁-->
-            <aop:before method="beforeAdvice" pointcut-ref="myPointcut"/>
+            <aop:before method="beforeAdvice" pointcut-ref="myPointcut"/> <!--指定前置通知-->
+            <aop:after-returning method="afterReturningAdvice" pointcut-ref="myPointcut"/> <!--指定后置通知-->
+            <aop:around method="aroundAdvice" pointcut-ref="myPointcut"/> <!--指定环绕通知-->
+            <aop:after-throwing method="afterThrowingAdvice" pointcut-ref="myPointcut"/><!--指定异常通知-->
+            <aop:after method="afterAdvice" pointcut-ref="myPointcut"/><!--指定最终通知-->
         </aop:aspect>
     </aop:config>
 

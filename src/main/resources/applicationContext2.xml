@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    用于演示注解开发的代码-->
+
+
+    <context:component-scan base-package="com.itbaima"/>
+    <aop:aspectj-autoproxy/>
+<!--    第一个是注解开发的基本，扫描注解，当然也可以用配置类去替代，第二个就是使用注解开发必须打开的，
+表明开启Aop自动代理，两种代理方式。因为其实aop最终就是生成了一个代理，所以需要开启这个自动代理-->
+</beans>
